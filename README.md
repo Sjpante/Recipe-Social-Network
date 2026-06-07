@@ -1,4 +1,4 @@
-# Recipe Manager App
+# Recipe Social Network App
 
 A complete recipe management application built with PHP, MySQL, and JavaScript.
 
