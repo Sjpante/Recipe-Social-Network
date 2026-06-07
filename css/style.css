@@ -1,0 +1,553 @@
+/* ============================================ */
+/* 1. ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ (RESET & FONTS)        */
+/* ============================================ */
+
+:root {
+  /* --- CORES & BACKGROUNDS --- */
+  --sidebar-bg: #2B2A30;             
+  --main-content-bg: #3A3940;
+  --main-content-bg-opacity: #3a3940c2;        
+  --comment-box-bg: #2B2A30;         
+
+  /* --- ΤΟ ΚΟΚΚΙΝΟ SIDEBAR P  --- */
+  --accent-red: #bc473a;             
+  --accent-red-hover: #9e392e;
+
+  /* --- DARK SIDEBAR BUTTONS  --- */
+  --sidebar-btn-bg: #1e1e24;        
+  --sidebar-btn-border: #6b6c6e;     
+  --sidebar-btn-text: #ffffff;       
+  --sidebar-btn-hover-bg: #2d3748;   
+  --sidebar-btn-hover-border: #59b173;
+
+  /* --- SIDEBAR LOGOUT BUTTON  --- */
+  --logout-btn-bg: #3f1d1d;          
+  --logout-btn-border: #5c2424;
+  --logout-btn-hover-bg: #5c2424;    
+     
+}
+
+*, *::before, *::after, input, textarea, select, button {
+  box-sizing: border-box;
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+}
+
+body {
+  background-image: url("vegetables-set-left-black-slate.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-attachment: fixed; 
+  background-position: center; 
+  color: #333;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* ============================================ */
+/* 2. ΔΟΜΗ ΤΡΙΣΤΗΛΟΥ LAYOUT                      */
+/* ============================================ */
+
+.app-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr 350px; 
+  justify-content: center; 
+  min-height: 100vh;
+  width: 100%;
+}
+
+.sidebar {
+  background: var(--sidebar-bg);
+  border-right: 3px solid #ffffff; 
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+.sidebar-header h1 {
+  color: #ffffff !important; 
+  border-bottom: none !important; 
+  padding-bottom: 0 !important;
+  margin-bottom: 15px;
+  font-family: "Lavishly Yours", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3.5rem;
+}
+
+.sidebar h3 {  
+  color: #ffffff !important; 
+  border-bottom: none !important; 
+  padding-bottom: 0 !important;
+  margin-bottom: 15px;
+}
+
+.sidebar-header p {
+  color: var(--accent-red); 
+  border-bottom: none !important; 
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.sidebar input,
+.sidebar textarea {
+  background-color: #1e1e24; 
+  border: 1px solid #374151;
+  color: #ffffff;
+}
+
+.sidebar input::placeholder,
+.sidebar textarea::placeholder {
+  color: #6b7280; 
+}
+
+.sidebar input:focus,
+.sidebar textarea:focus {
+  border-color: #ffffff; 
+  background-color: #121215; 
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.sidebar input[type="file"]::file-selector-button {
+  background-color: #374151;
+  color: #ffffff;
+  border: 1px solid #4b5563;
+}
+
+.sidebar input[type="file"]::file-selector-button:hover {
+  background-color: #4b5563;
+}
+
+.main-content {
+  background-color: transparent !important;
+  padding: 40px;
+  max-width: 900px; 
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto; 
+}
+
+.main-content h3 {
+  color: white;
+  font-size: 26px;
+}
+
+
+.profile-sidebar {
+  background: var(--main-content-bg-opacity); 
+  border-left: 3px solid #ffffff; 
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3);
+  padding: 30px 20px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+.profile-sidebar h3 {
+  color: white;
+  font-size: 20px;
+}
+
+.profile-info-box {
+  background-color: #1e1e24; 
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid #557a46 !important; 
+}
+
+.profile-label {
+  color: var(--accent-red) !important; 
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 2px !important;
+  margin-top: 12px !important;
+}
+
+.profile-label:first-child {
+  margin-top: 0 !important;
+}
+
+.profile-value {
+  color: #ffffff !important;
+  font-size: 16px;
+  margin-bottom: 10px !important;
+  word-break: break-all; 
+}
+
+.profile-value-bio {
+  color: #e2e8f0 !important;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.4;
+  font-weight: 400; 
+  margin-bottom: 0 !important;
+}
+
+.filters-box {
+  background-color: #1e1e24; 
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid #557a46 !important; 
+}
+
+/* ============================================ */
+/* 4. ΣΤΟΙΧΕΙΑ ΕΙΣΑΓΩΓΗΣ (INPUTS & TEXTAREAS)   */
+/* ============================================ */
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #374151 !important;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #1e1e24 !important; 
+  color: #ffffff !important;            
+}
+
+textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Placeholder κείμενα */
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280 !important; 
+}
+
+/* Focus κατάσταση όταν ο χρήστης γράφει */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #ffffff !important;
+  background-color: #121215 !important; 
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+/* Ρυθμίσεις για το κουμπί επιλογής αρχείου εικόνας */
+input[type="file"] {
+  background-color: transparent !important;
+  padding: 10px 0;
+  border: none !important;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #374151;
+  color: white;
+  border: 1px solid #4b5563;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 15px;
+  transition: background 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #4b5563;
+}
+
+/* ============================================ */
+/* 5. ΚΟΥΜΠΙΑ (BUTTONS)                         */
+/* ============================================ */
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700; 
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* ============================================ */
+/* ΚΟΥΜΠΙΑ ΜΕΣΑ ΣΤΟ SIDEBAR  */
+/* ============================================ */
+
+.sidebar .btn-primary, 
+.sidebar .btn-success,
+#addRecipeBtn {
+  background-color: var(--sidebar-btn-bg) !important;
+  color: var(--sidebar-btn-text) !important;
+  border: 1px solid var(--sidebar-btn-border) !important;
+  width: 100%; 
+}
+
+.sidebar .btn-primary:hover, 
+.sidebar .btn-success:hover,
+#addRecipeBtn:hover {
+  background-color: var(--sidebar-btn-hover-bg) !important;
+  border-color: var(--sidebar-btn-hover-border) !important;
+}
+
+#logoutBtn {
+  background-color: var(--logout-btn-bg) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--logout-btn-border) !important;
+  width: 100%;
+  margin-top: 15px;
+}
+
+#logoutBtn:hover {
+  background-color: var(--logout-btn-hover-bg) !important;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.button-group button {
+  flex: 1;
+}
+
+/* ============================================ */
+/* ΚΟΥΜΠΙΑ ΔΕΞΙΑΣ ΠΛΕΥΡΑΣ  */
+/* ============================================ */
+
+.pagination-container button {
+  background-color: var(--accent-red) !important;
+  color: #ffffff !important;
+  padding: 10px 18px;
+  font-size: 14px;
+}
+
+.pagination-container button:hover {
+  background-color: var(--accent-red-hover) !important;
+}
+
+.add-comment-form button {
+  background-color: var(--accent-red) !important;
+  color: #ffffff !important;
+  padding: 0 20px;
+  font-size: 14px;
+  height: 45px; 
+}
+
+.add-comment-form button:hover {
+  background-color: var(--accent-red-hover) !important;
+}
+
+/* ============================================ */
+/* ΚΟΥΜΠΙΑ ΔΙΑΧΕΙΡΙΣΗΣ ΣΤΟ ΔΕΞΙ SIDEBAR        */
+/* ============================================ */
+
+.btn-sidebar-manage {
+  background-color: var(--sidebar-btn-bg) !important;
+  color: var(--sidebar-btn-text) !important;
+  border: 1px solid var(--sidebar-btn-border) !important;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-sidebar-manage:hover {
+  background-color: var(--sidebar-btn-hover-bg) !important;
+  border-color: var(--sidebar-btn-hover-border) !important;
+}
+
+/* Ειδικό hover για τη διαγραφή  */
+.btn-sidebar-delete:hover {
+  border-color: var(--accent-red) !important;
+  background-color: #2d1f1f !important;
+}
+
+#managedRecipeTitle {
+  color: #15803d !important;      
+  font-size: 15px !important;
+  font-weight: 700 !important;     
+  margin-top: 0 !important;
+  margin-bottom: 15px !important;
+  text-transform: uppercase;       
+}
+
+/* ============================================ */
+/* 6. ΔΥΝΑΜΙΚΟ ΠΕΡΙΕΧΟΜΕΝΟ (RECIPE CARDS)       */
+/* ============================================ */
+
+.recipe-card {
+  background: var(--main-content-bg) !important; 
+  border-left: 5px solid var(--accent-red); 
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: none !important; 
+}
+
+.recipe-card h4 {
+  margin: 0 0 5px 0;
+  color: var(--accent-red) !important; 
+  font-size: 26px;
+  text-transform: uppercase;
+}
+
+.recipe-card h3 {
+  margin: 0 0 5px 0;
+  color: #979797 !important; 
+}
+
+.recipe-card p {
+  margin: 0 0 10px 0;
+  color: #e2e8f0 !important; 
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.recipe-card .section-label {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--accent-red); 
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.recipe-card img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* ============================================ */
+/*  COMMENT BOX & TEXT                 */
+/* ============================================ */
+
+.comments-box {
+  background-color: #2b2a30 !important;
+  padding: 15px !important;
+  border-radius: 6px !important;
+  border: 1px solid #4a5568 !important;
+  margin-top: 15px !important;
+}
+
+.comments-box p {
+  color: #ffffff !important; 
+  margin: 5px 0 !important;
+  font-weight: 600 !important;
+}
+
+.comments-box .no-comments {
+  color: #9ca3af !important;
+  font-style: italic !important;
+}
+
+/* Φόρμα Σχολίων */
+.recipe-card div[style*="display:flex"] {
+  display: flex !important;
+  align-items: stretch !important;  
+  gap: 10px !important;
+  margin-top: 15px !important;
+}
+
+.recipe-comment-input {
+  background-color: #1e1e24 !important; 
+  color: #ffffff !important;            
+  border: 1px solid #4b5563 !important;
+  border-radius: 8px !important;
+  padding: 12px 15px !important;
+  margin-bottom: 0 !important;      
+  flex: 1 !important;               
+  height: 45px !important;          
+}
+
+.recipe-comment-input:focus {
+  background-color: #121215 !important; 
+  border-color: #ffffff !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1) !important;
+}
+
+.recipe-comment-input::placeholder {
+  color: #9ca3af !important; 
+  font-weight: 500;
+}
+
+
+.recipe-card div[style*="display:flex"] button {
+  margin: 0 !important;
+  height: 45px !important;          
+  padding: 0 20px !important;       
+  white-space: nowrap !important;   
+  font-size: 14px !important;
+}
+
+/* ============================================ */
+/* 7. ΣΕΛΙΔΟΠΟΙΗΣΗ & GUEST BANNER               */
+/* ============================================ */
+
+.pagination-container {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 15px; 
+  margin-top: 25px;
+  border-top: 2px solid #4a5568; 
+  padding-top: 20px;
+  color: #ffffff;
+}
+
+.pagination-container button {
+  flex: none;
+  width: auto;
+}
+
+.loading-text {
+  color: #bbb; 
+  font-style: italic;
+  text-align: center;
+}
+
+.guest-banner {
+  background: #2d3748; 
+  border: 1px dashed var(--accent-red); 
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+/* RESPONSIVE LAYOUT ΓΙΑ ΚΙΝΗΤΑ */
+@media (max-width: 1100px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar, .profile-sidebar {
+    height: auto;
+    position: static;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .profile-sidebar {
+    border-left: none;
+    border-top: 3px solid #ffffff; 
+  }
+  .main-content {
+    padding: 20px;
+  }
+}

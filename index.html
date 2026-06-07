@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RecipeBook - Μοιράσου τις συνταγές σου</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+    <div class="app-layout">
+      
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>RecipeBook</h1>
+          <p>Μοιράσου τις συνταγές σου!</p>
+        </div>
+
+        <div class="sidebar-box" id="authSection">
+          <h3>Είσοδος / Εγγραφή</h3>
+          <input type="text" id="usernameInput" placeholder="Όνομα χρήστη (Username)" />
+          <input type="email" id="emailInput" placeholder="Email (Μόνο για νέα εγγραφή)" />
+          <input type="password" id="passwordInput" placeholder="Κωδικός πρόσβασης" />
+
+          <textarea id="bioInput" placeholder="Λίγα λόγια για εσάς... (Μόνο για νέα εγγραφή)" rows="2" style="margin-bottom: 15px;"></textarea>
+
+          <div class="button-group">
+            <button id="loginBtn" class="btn-primary">Σύνδεση</button>
+            <button id="registerBtn" class="btn-success">Εγγραφή</button>
+          </div>
+        </div>
+
+        <div class="sidebar-box" id="dashboardSection" style="display: none;">
+          <h3>Μοιράσου μια Συνταγή</h3>
+          <input type="text" id="titleInput" placeholder="Τίτλος Συνταγής (e.g. Καρμπονάρα)" />
+          
+          <select id="categoryInput">
+            <option value="Κυρίως Πιάτα">Κυρίως Πιάτα</option>
+            <option value="Γλυκά">Γλυκά</option>
+            <option value="Σαλάτες">Σαλάτες</option>
+            <option value="Ορεκτικά">Ορεκτικά</option>
+          </select>
+          
+          <input type="text" id="descInput" placeholder="Μια σύντομη περιγραφή..." />
+          
+          <textarea id="ingredientsInput" placeholder="Υλικά (ένα ανά γραμμή):&#10;500γρ. μακαρόνια&#10;200γρ. μπέικον" rows="4"></textarea>
+          <textarea id="instructionsInput" placeholder="Οδηγίες (μία ανά γραμμή):&#10;Βράζουμε τα μακαρόνια..." rows="4"></textarea>
+
+          <input type="file" id="imageInput" accept="image/jpeg, image/png, .jpg, .jpeg, .png" style="margin-bottom: 15px" />
+
+          <button id="addRecipeBtn" class="btn-primary" style="width: 100%">Ανέβασμα Συνταγής</button>
+          <button id="logoutBtn">Αποσύνδεση</button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="container">
+          <h3>Πρόσφατες Συνταγές</h3>
+          
+          <div id="recipeList">
+            <p class="loading-text">Φόρτωση συνταγών από τη βάση...</p>
+          </div>
+
+          <div class="pagination-container">
+            <button id="prevPageBtn" class="btn-success">Προηγούμενη</button>
+            <span id="pageIndicator">Σελίδα 1</span>
+            <button id="nextPageBtn" class="btn-success">Επόμενη</button>
+          </div>
+        </div>
+      </main>
+
+      <aside class="profile-sidebar" id="profileSidebar" style="display: block;">
+        <div class="container">
+          
+          <h3 id="profileHeaderTitle" style="display: none;">Το Προφίλ Μου</h3>
+          
+          <div class="profile-info-box" style="margin-bottom: 25px; display: none;">
+            <p class="profile-label">Όνομα Χρήστη:</p>
+            <p id="profileUsername" class="profile-value">-</p>
+            
+            <p class="profile-label">Email:</p>
+            <p id="profileEmail" class="profile-value">-</p>
+            
+            <p class="profile-label">Σύντομο Βιογραφικό:</p>
+            <p id="profileBio" class="profile-value-bio">-</p>
+          </div>
+
+          <h3>Αναζήτηση & Φίλτρα</h3>
+          <div class="filters-box" style="margin-bottom: 25px;">
+            <p class="profile-label" style="margin-top: 0 !important;">Αναζήτηση:</p>
+            <input type="text" id="searchInput" placeholder="Με υλικά..." style="margin-bottom: 15px; width: 100%;" />
+
+            <p class="profile-label" style="margin-top: 0 !important;">Κατηγορία:</p>
+            <select id="categoryFilter" style="cursor: pointer;">
+              <option value="Όλες">Όλες οι κατηγορίες</option>
+              <option value="Κυρίως Πιάτα">Κυρίως Πιάτα</option>
+              <option value="Γλυκά">Γλυκά</option>
+              <option value="Σαλάτες">Σαλάτες</option>
+              <option value="Ορεκτικά">Ορεκτικά</option>
+            </select>
+          </div>
+
+          <div id="recipeManagementBox" style="margin-bottom: 25px; display: none;">
+            <h3 style="margin-top: 0;">Διαχείριση Συνταγής</h3>
+            <div class="profile-info-box" style="border: 2px solid #557a46 !important;">
+              <p id="managedRecipeTitle"> -</p>
+              <button id="sidebarEditBtn" class="btn-sidebar-manage" style="margin-bottom: 10px;">Επεξεργασία Συνταγής</button>
+              <button id="sidebarDeleteBtn" class="btn-sidebar-manage btn-sidebar-delete">Διαγραφή Συνταγής</button>
+            </div>
+          </div>
+
+        </div> 
+      </aside>
+
+    </div> 
+    
+    <script src="js/index.js?v=2"></script>
+  </body>
+</html>
