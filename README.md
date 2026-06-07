@@ -1,21 +1,21 @@
 # Recipe Manager App
 
-Μια πλήρης εφαρμογή διαχείρισης συνταγών μαγειρικής, κατασκευασμένη με PHP, MySQL και JavaScript.
+A complete recipe management application built with PHP, MySQL, and JavaScript.
 
-## Λειτουργίες
-- **Auth System:** Εγγραφή και σύνδεση χρηστών με ασφαλή κρυπτογράφηση (Bcrypt).
-- **CRUD Operations:** Δημιουργία, ανάγνωση, επεξεργασία και διαγραφή συνταγών.
-- **Engagement:** Σύστημα Likes και σχολίων για κάθε συνταγή.
-- **Filtering & Pagination:** Αναζήτηση συνταγών ανά τίτλο/κατηγορία και σελιδοποίηση αποτελεσμάτων.
-- **Responsive UI:** Φιλικό περιβάλλον για τον χρήστη.
+## Features
+- **Auth System:** User registration and login with secure password hashing (Bcrypt).
+- **CRUD Operations:** Create, read, update, and delete recipes.
+- **Engagement:** Like and comment system for every recipe.
+- **Filtering & Pagination:** Search recipes by title/category and paginated results.
+- **Responsive UI:** User-friendly interface designed for various screen sizes.
 
-## Τεχνολογίες
+## Technologies
 - **Frontend:** HTML5, CSS3, JavaScript (Fetch API, SweetAlert2).
 - **Backend:** PHP.
 - **Database:** MySQL.
 
-## Εγκατάσταση
-1. Κλωνοποίησε το repository: `git clone https://github.com/USERNAME/recipe-manager-app.git`
-2. Τοποθέτησε τα αρχεία στον φάκελο του `htdocs` (για XAMPP).
-3. Εισήγαγε το αρχείο SQL στη βάση δεδομένων σου.
-4. Ρύθμισε το `db_connect.php` με τα στοιχεία του server σου.
+## Installation
+1. Clone the repository: `git clone https://github.com/Sjpante/Recipe-Social-Network.git`
+2. Place the files in your `htdocs` folder (if using XAMPP).
+3. Import the `recipes_db.sql` file into your MySQL database.
+4. Update `db_connect.php` with your local database credentials.
